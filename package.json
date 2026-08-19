@@ -1,0 +1,55 @@
+{
+  "name": "pw_ts_bdd_weatherforecastproject",
+  "version": "1.0.0",
+  "description": "��#\u0000 \u0000p\u0000w\u0000_\u0000t\u0000s\u0000_\u0000B\u0000D\u0000D\u0000_\u0000w\u0000e\u0000a\u0000t\u0000h\u0000e\u0000r\u0000F\u0000o\u0000r\u0000e\u0000c\u0000a\u0000s\u0000t\u0000P\u0000r\u0000o\u0000j\u0000e\u0000c\u0000t\u0000\r\u0000 \u0000\r\u0000 \u0000\r\u0000 \u0000I\u0000n\u0000s\u0000t\u0000a\u0000l\u0000a\u0000t\u0000i\u0000o\u0000n\u0000\r\u0000 \u0000\r\u0000 \u0000\r\u0000 \u00001\u0000-\u0000 \u0000n\u0000p\u0000m\u0000 \u0000i\u0000 \u0000-\u0000D\u0000 \u0000@\u0000p\u0000l\u0000a\u0000y\u0000w\u0000r\u0000i\u0000g\u0000h\u0000t\u0000/\u0000t\u0000e\u0000s\u0000t\u0000 \u0000p\u0000l\u0000a\u0000y\u0000w\u0000r\u0000i\u0000g\u0000h\u0000t\u0000-\u0000b\u0000d\u0000d\u0000 \u0000\r\u0000 \u0000\r\u0000 \u0000",
+  "homepage": "https://github.com/JohnDoww/pw_ts_BDD_weatherForecastProject#readme",
+  "bugs": {
+    "url": "https://github.com/JohnDoww/pw_ts_BDD_weatherForecastProject/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JohnDoww/pw_ts_BDD_weatherForecastProject.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "ansi-regex": "^5.0.1",
+    "buffer-from": "^1.1.2",
+    "class-transformer": "^0.5.1",
+    "cli-table3": "^0.6.5",
+    "commander": "^13.1.0",
+    "emoji-regex": "^8.0.0",
+    "fdir": "^6.5.0",
+    "is-fullwidth-code-point": "^3.0.0",
+    "lodash.sortby": "^4.7.0",
+    "luxon": "^3.7.2",
+    "mime-db": "^1.54.0",
+    "mime-types": "^3.0.2",
+    "picomatch": "^4.0.5",
+    "playwright": "^1.62.1",
+    "playwright-bdd": "^9.2.0",
+    "playwright-core": "^1.62.1",
+    "reflect-metadata": "^0.2.2",
+    "regexp-match-indices": "^1.0.2",
+    "regexp-tree": "^0.1.27",
+    "source-map": "^0.6.1",
+    "source-map-support": "^0.5.21",
+    "string-width": "^4.2.3",
+    "strip-ansi": "^6.0.1",
+    "tinyglobby": "^0.2.17",
+    "typescript": "^7.0.2",
+    "undici-types": "^8.10.0",
+    "xmlbuilder": "^15.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^26.2.0"
+  }
+}
