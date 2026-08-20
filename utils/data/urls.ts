@@ -1,0 +1,4 @@
+export const urls = {
+  webApp: "https://playwright.dev",
+  api: "https://geocoding-api.open-meteo.com/v1/search?name=dfd",
+};
