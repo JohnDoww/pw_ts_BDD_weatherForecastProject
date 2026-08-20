@@ -47,6 +47,7 @@ playwright.config.ts
 
 - **BDD / Gherkin** - a scenario is written as readable sentences; each sentence is connected to
   code in `apiSteps.ts`.
+- **Followed Principles** - OOP Principles (Inheritance, Encapsulation, Polymorphism and Abstraction), DRY, KISS, YAGNI
 - **Facade** - `App` is a single door to everything: `new App(page).api.weatherForecastService`.
   You never need to import a service directly in a test.
 - **Service object (same idea as Page Object)** - one class per API service. The class knows its
