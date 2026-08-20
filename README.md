@@ -71,15 +71,15 @@ playwright.config.ts
 
 ### Tools
 
-| Tool | Why |
-| --- | --- |
-| Playwright Test | runner, API requests, report, traces |
-| playwright-bdd (`bddgen`) | turns `.feature` files into Playwright tests |
-| TypeScript | typed test code |
-| zod | validates that the API response matches the expected shape |
-| Node.js + npm | runtime and scripts |
-| GitHub Actions | runs the tests on every push / pull request |
-| ESLint | To be added - for following project coding style |
+| Tool                      | Why                                                        |
+| ------------------------- | ---------------------------------------------------------- |
+| Playwright Test           | runner, API requests, report, traces                       |
+| playwright-bdd (`bddgen`) | turns `.feature` files into Playwright tests               |
+| TypeScript                | typed test code                                            |
+| zod                       | validates that the API response matches the expected shape |
+| Node.js + npm             | runtime and scripts                                        |
+| GitHub Actions            | runs the tests on every push / pull request                |
+| ESLint                    | To be added - for following project coding style           |
 
 ---
 
@@ -122,7 +122,7 @@ npx playwright show-report  # open the HTML report of the last run
 
 - **The current endpoint is a stand-in.** `utils/data/urls.ts` points to the Open-Meteo geocoding
   API (`https://geocoding-api.open-meteo.com/v1`, service path `/search`). It answers with city
-  coordinates, not with a forecast, so the step *"Response from ... should match the data type"*
+  coordinates, not with a forecast, so the step _"Response from ... should match the data type"_
   is expected to fail until the real service is ready. When it is ready, only `urls.api` has to
   be updated.
 
@@ -150,5 +150,4 @@ npx playwright show-report  # open the HTML report of the last run
 
 ## 5. Omissions
 
-- Not all tes scenarios are covered - it was intentionally to do not extend test framework implementation time.
-- Mocking logic not implemented for the same reason,  but it's described in details, I believe it's enough to rate my expertise.
+- Not all tes scenarios are covered, Mocking logic not implemented, tags structure for the tests and Before all test file with service health check wasn't implemented - it was intentionally to do not extend test framework implementation time.
