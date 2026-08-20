@@ -1,7 +1,6 @@
 {
   "name": "pw_ts_bdd_weatherforecastproject",
   "version": "1.0.0",
-  "description": "New project created with Playwright Test Generator  ",
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
