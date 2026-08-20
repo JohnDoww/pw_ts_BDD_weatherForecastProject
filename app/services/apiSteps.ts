@@ -1,5 +1,9 @@
+/**
+ * This file defines the API step definitions for the BDD tests.
+ */
+
 import { expect } from "@playwright/test";
-import { When, Then } from "../../fixtures/dataExchangeFixture";
+import { When, Then, test } from "../../fixtures/dataExchangeFixture";
 import { defineParameterType } from "playwright-bdd";
 
 defineParameterType({
@@ -15,6 +19,18 @@ When(
     serviceName: "anotherExampleService" | "weatherForecastService",
   ) => {
     ctx.response = await apiServices[serviceName].getRequest();
+  },
+);
+
+
+When(
+  "GET {serviceName} with {string} params",
+  async (
+    { ctx, apiServices },
+    serviceName: "anotherExampleService" | "weatherForecastService", params: string
+  ) => {
+    //name=kyiv
+    ctx.response = await apiServices[serviceName].getRequest({params: params});
   },
 );
 
@@ -41,6 +57,12 @@ Then(
     const isMatched = apiServices[serviceName].isObjectMatchNeededResponseType(
       ctx.response,
     );
+    if (!isMatched) {
+      await test.info().attach("Wrong Response Body", {
+        body: JSON.stringify(await ctx.response.json(), null, 2),
+        contentType: "application/json",
+      });
+    }
     expect
       .soft(
         isMatched,

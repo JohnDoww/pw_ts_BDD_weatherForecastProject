@@ -1,3 +1,8 @@
+/**
+ * This file defines the abstract class BaseService, which serves as a base class for all service classes in the application.
+ * It extends the BaseClass and provides abstract methods for making GET and POST requests.
+ * Subclasses of BaseService must implement the getRequest and postRequest methods to define specific behavior for each service.
+ */
 import { BaseClass } from "../BaseClass";
 
 export abstract class BaseService extends BaseClass {

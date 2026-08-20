@@ -1,3 +1,8 @@
+/**
+ * This file defines the AnotherExampleService class, which represents another example service.
+ * It extends the BaseService class and provides specific implementations for making requests.
+ */
+
 import { BaseService } from "./BaseService.abstract";
 
 export class AnotherExampleService extends BaseService {

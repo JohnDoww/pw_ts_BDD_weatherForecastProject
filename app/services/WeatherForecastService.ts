@@ -1,14 +1,13 @@
-import { Page, expect } from "@playwright/test";
-import z from "zod";
-import { BaseClass } from "../BaseClass";
+/**
+ * This file defines the WeatherForecastService class, which represents the weather forecast service.
+ * It extends the BaseService class and provides specific implementations for making requests.
+ */
+
 import { BaseService } from "./BaseService.abstract";
-import {
-  CityBasedWeatherForecast,
-  cityBasedWeatherForecastSchema,
-} from "../../utils/dataModels/weatherForecastDataTypes";
+import { cityBasedWeatherForecastSchema } from "../../utils/dataModels/weatherForecastDataTypes";
 
 export class WeatherForecastService extends BaseService {
-  private readonly serviceUrl: string = this.urls.api + "/weatherforecast";
+  private readonly serviceUrl: string = this.urls.api + "/search";
 
   isObjectMatchNeededResponseType(obj: any): boolean {
     const schema = cityBasedWeatherForecastSchema;
@@ -17,7 +16,7 @@ export class WeatherForecastService extends BaseService {
 
   async getRequest(options?: { params?: string; headers?: {} }): Promise<{}> {
     const { params, headers } = options || {};
-    const url = params ? `${this.serviceUrl}/${params}` : this.serviceUrl;
+    const url = params ? `${this.serviceUrl}?${params}` : this.serviceUrl;
     const response = await this.getRequestBase(url, headers);
 
     return response;

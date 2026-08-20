@@ -1,0 +1,48 @@
+
+
+## for those scenarios will need to mock Open-Meteo data 
+Scenario Outline: GET response - reasoning indicates <reasoning_temp> temperature category and suitability for all activities over one week
+  When GET "weatherForecastService" with "name=kyiv" params
+  Then the response reasoning should indicate "<reasoning_temp>" temperature for all activities
+  And the suitability score should be "<suitability>"
+
+  Examples:
+    | temperature_level | reasoning_temp | suitability |
+    | low               | low            | poor        |
+    | medium            | medium         | Moderate    |
+    | warm              | warm           | Good        |
+    | sunny             | excellent      | Excellent   |
+
+
+
+Scenario Outline: GET request fails with SC 400 when sending city name <issue_type> 
+  When GET "weatherForecastService" with "name=<invalid_city_name>" params
+  Then Response status should be 400
+  And Response error message should indicate city name length is out of bounds
+
+  Examples:
+    | issue_type            | invalid_city_name                     |
+    | Exceeds MAX length    | extremelyLongCityNameThatExceedsLimit |
+    | Below MIN length      | a                                     |
+    | is boolean            | true                                  |
+    | is number             | 1234                                  |
+
+
+Scenario: User retrieves forecast after a previously failed city name attempt
+  Given a previous request failed with status 400 for city name "a"
+  When GET "weatherForecastService" with "name=Kyiv" params
+  Then Response status should be 200
+  And Response from "weatherForecastService" should contain the forecast for "Kyiv"
+
+
+Scenario: Search city by partial name returns relevant city proposals
+  When GET "weatherForecastService/search" with "query=Lon" params
+  Then Response status should be 200
+  And all suggested city names in the response should contain "Lon"
+
+
+Scenario: GET response contains a 7-day forecast starting from today
+  When GET "weatherForecastService" with "name=Kyiv" params
+  Then Response status should be 200
+  And the response payload should contain 7 daily forecast entries
+  And the forecast date range should start from today and cover the next 7 consecutive days
