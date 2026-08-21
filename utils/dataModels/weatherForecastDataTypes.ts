@@ -8,7 +8,7 @@ import { ISODateString } from "./commonDataTypes.js";
 import z from "zod";
 
 type Activities =
-  | "hiking"
+  | "Skiing"
   | "Surfing"
   | "Outdoor Sightseeing"
   | "Indoor Sightseeing";

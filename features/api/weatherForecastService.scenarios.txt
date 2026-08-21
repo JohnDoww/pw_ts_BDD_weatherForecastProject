@@ -6,30 +6,41 @@ Scenario: Open-Meteo API GET resposne return expected data type
   And Response from "OpenMeteoService" should match the data type
 
 ## for those scenarios will need to mock Open-Meteo data 
-Scenario Outline: GET response - reasoning indicates <reasoning_temp> temperature category and suitability for all activities over one week
+Scenario Outline: GET response - reasoning indicates right temperature category and suitability between  <activity 2> and <activity 1> when temperature is <temperature> over one week
+  Given Open-Meteo returns "<temperature>" for "Kyiv"
   When GET "weatherForecastService" with "name=kyiv" params
-  Then the response reasoning should indicate "<reasoning_temp>" temperature for all activities
-  And the suitability score should be "<suitability>"
+  Then the suitability score should be "<suitability1>" for "Outdoor Sightseeing" for each day
+  And the suitability score should be "<suitability2>" for "Indoor Sightseeing" for each day
+  And the response reasoning should indicate "<temperature>" temperature for "Outdoor Sightseeing" and "Indoor Sightseeing" activities
+  And forecast generated for next 7 days
 
   Examples:
-    | temperature_level | reasoning_temp | suitability |
-    | low               | low            | poor        |
-    | medium            | medium         | Moderate    |
-    | warm              | warm           | Good        |
-    | sunny             | excellent      | Excellent   |
+    | temperature       | activity 1           | activity 2         | suitability1 | suitability2  |
+    | low               | Outdoor Sightseeing  | Indoor Sightseeing | Poor         | Excellent     |
+    | medium            | Outdoor Sightseeing  | Indoor Sightseeing | Moderate     | Good          |
+    | warm              | Outdoor Sightseeing  | Indoor Sightseeing | Good         | Moderate      |
+    | sunny             | Outdoor Sightseeing  | Indoor Sightseeing | Excellent    | Poor          |
+    | low               | Surfing              | Skiing             | Poor         | Excellent     |
+    | medium            | Surfing              | Skiing             | Moderate     | Good          |
+    | warm              | Surfing              | Skiing             | Good         | Moderate      |
+    | sunny             | Surfing              | Skiing             | Excellent    | Poor          |
+
 
 
 ## for those scenarios will need to mock Open-Meteo data 
-  Scenario Outline: Suitability score and reasoning accurately reflect weather conditions per activity
-  Given Open-Meteo returns heavy snowfall and -5°C for "Kyiv"
+  Scenario Outline: Suitability score and reasoning accurately reflect weather conditions per <activity> activity
+  Given Open-Meteo returns "heavy snowfall,-5°C" for "Kyiv"
   When GET "weatherForecastService" with "name=Kyiv" params
   Then the response for activity "<activity>" should have suitability "<suitability>"
-  And the reasoning should contain "<expected_reasoning>"
-
+  And the reasoning should contain "<expected_reasoning>" for each day
+  And forecast generated for next 7 days
+  
   Examples:
-    | activity | suitability | expected_reasoning    |
-    | Skiing   | Excellent   | High snowfall expected |
-    | Cycling  | Poor        | High snowfall expected |
+    | activity            | suitability | expected_reasoning     |
+    | Skiing              | Excellent   | High snowfall expected |
+    | Outdoor Sightseeing | Poor        | High snowfall expected |
+    | Indoor Sightseeing  | Excellent   | High snowfall expected |
+    | Surfing             | Poor        | High snowfall expected |
 
 ## for those scenarios will need to mock Open-Meteo data 
 Scenario Outline: Handling downstream weather provider (Open-Meteo) failures gracefully
