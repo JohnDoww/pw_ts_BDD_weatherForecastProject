@@ -39,7 +39,7 @@ export const cityBasedWeatherForecastSchema = z.object({
       activities: z.array(
         z.object({
           activityName: z.enum([
-            "hiking",
+            "Skiing",
             "Surfing",
             "Outdoor Sightseeing",
             "Indoor Sightseeing",
