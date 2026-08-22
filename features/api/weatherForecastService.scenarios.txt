@@ -69,6 +69,10 @@ Scenario Outline: GET request fails with SC 400 when sending city name <issue_ty
     | is boolean            | true                                  |
     | is number             | 1234                                  |
     | has spec symbol       | %%%%kyiv                              |
+    | non existing          | not existing city name                |
+    | empty request         | ""                                    |
+    | upper case            | CITYNAME                              |
+    | mixed case            | cItYnAmE                              |
 
 
 
