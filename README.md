@@ -150,4 +150,4 @@ npx playwright show-report  # open the HTML report of the last run
 
 ## 5. Omissions
 
-- Not all tes scenarios are covered, Mocking logic not implemented, tags structure for the tests and Before all test file with service health check wasn't implemented - it was intentionally to do not extend test framework implementation time.
+- Not all test scenarios are automated, Mocking logic not implemented, tags structure for the tests and Before all test file with service health check wasn't implemented - it was intentionally to do not extend test framework implementation time.
