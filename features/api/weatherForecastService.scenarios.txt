@@ -6,12 +6,12 @@ Scenario: Open-Meteo API GET resposne return expected data type
   And Response from "OpenMeteoService" should match the data type
 
 ## for those scenarios will need to mock Open-Meteo data 
-Scenario Outline: GET response - reasoning indicates right temperature category and suitability between  <activity 2> and <activity 1> when temperature is <temperature> over one week
+Scenario Outline: GET response - reasoning indicates right temperature category and suitability between  <activity 1> and <activity 2> when temperature is <temperature> over one week
   Given Open-Meteo returns "<temperature>" for "Kyiv"
   When GET "weatherForecastService" with "name=kyiv" params
-  Then the suitability score should be "<suitability1>" for "Outdoor Sightseeing" for each day
-  And the suitability score should be "<suitability2>" for "Indoor Sightseeing" for each day
-  And the response reasoning should indicate "<temperature>" temperature for "Outdoor Sightseeing" and "Indoor Sightseeing" activities
+  Then the suitability score should be "<suitability1>" for "<activity 1>" for each day
+  And the suitability score should be "<suitability2>" for "<activity 2>" for each day
+  And the response reasoning should indicate "<temperature>" temperature for "<activity 1>" and "<activity 2>" activities
   And forecast generated for next 7 days
 
   Examples:
@@ -34,7 +34,7 @@ Scenario Outline: GET response - reasoning indicates right temperature category 
   Then the response for activity "<activity>" should have suitability "<suitability>"
   And the reasoning should contain "<expected_reasoning>" for each day
   And forecast generated for next 7 days
-  
+
   Examples:
     | activity            | suitability | expected_reasoning     |
     | Skiing              | Excellent   | High snowfall expected |
@@ -68,6 +68,8 @@ Scenario Outline: GET request fails with SC 400 when sending city name <issue_ty
     | Below MIN length      | a                                     |
     | is boolean            | true                                  |
     | is number             | 1234                                  |
+    | has spec symbol       | %%%%kyiv                              |
+
 
 
 Scenario: User retrieves forecast after a previously failed city name attempt
