@@ -4,6 +4,7 @@ Scenario: Open-Meteo API GET resposne return expected data type
   When GET "OpenMeteoService" with "name=Kyiv" params
   Then Response status should be 200
   And Response from "OpenMeteoService" should match the data type
+  And Response from "OpenMeteoService" should have data for 7 next days
 
 ## for those scenarios will need to mock Open-Meteo data 
 Scenario Outline: GET response - reasoning indicates right temperature category and suitability between  <activity 1> and <activity 2> when temperature is <temperature> over one week
