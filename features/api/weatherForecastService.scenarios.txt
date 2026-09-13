@@ -32,7 +32,7 @@ Scenario Outline: GET response - reasoning indicates right temperature category 
   Given Open-Meteo returns "<weather_forecast>" for "Kyiv"
   When GET "weatherForecastService" with "name=Kyiv" params
   Then the response for summer activity "<activities_set_1>" should have suitability "<suitability_1>"
-  And for winter activity "<activities_set_1>" should have suitability "<suitability_2>"
+  And for winter activity "<activities_set_2>" should have suitability "<suitability_2>"
   And the reasoning should contain "<expected_reasoning>" for each day
   And forecast generated for next 7 days
 
