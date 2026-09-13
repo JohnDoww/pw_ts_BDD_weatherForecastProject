@@ -5,19 +5,17 @@
 import { expect } from "@playwright/test";
 import { When, Then, test } from "../../fixtures/dataExchangeFixture";
 import { defineParameterType } from "playwright-bdd";
+import { AppServices } from "../../app/services/AppServices";
 
 defineParameterType({
   name: "serviceName",
   regexp: /["']?(anotherExampleService|weatherForecastService)["']?/,
-  transformer: (s) => s as "anotherExampleService" | "weatherForecastService",
+  transformer: (s) => s as keyof AppServices,
 });
 
 When(
   "GET {serviceName} without params and headers",
-  async (
-    { ctx, apiServices },
-    serviceName: "anotherExampleService" | "weatherForecastService",
-  ) => {
+  async ({ ctx, apiServices }, serviceName: keyof AppServices) => {
     ctx.response = await apiServices[serviceName].getRequest();
   },
 );
@@ -26,7 +24,7 @@ When(
   "GET {serviceName} with {string} params",
   async (
     { ctx, apiServices },
-    serviceName: "anotherExampleService" | "weatherForecastService",
+    serviceName: keyof AppServices,
     params: string,
   ) => {
     ctx.response = await apiServices[serviceName].getRequest({
@@ -51,10 +49,7 @@ Then(
 
 Then(
   "Response from {serviceName} should match the data type",
-  async (
-    { ctx, apiServices },
-    serviceName: "anotherExampleService" | "weatherForecastService",
-  ) => {
+  async ({ ctx, apiServices }, serviceName: keyof AppServices) => {
     const isMatched = apiServices[serviceName].isObjectMatchNeededResponseType(
       ctx.response,
     );
