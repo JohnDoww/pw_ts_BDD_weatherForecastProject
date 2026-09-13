@@ -22,15 +22,16 @@ When(
   },
 );
 
-
 When(
   "GET {serviceName} with {string} params",
   async (
     { ctx, apiServices },
-    serviceName: "anotherExampleService" | "weatherForecastService", params: string
+    serviceName: "anotherExampleService" | "weatherForecastService",
+    params: string,
   ) => {
-    //name=kyiv
-    ctx.response = await apiServices[serviceName].getRequest({params: params});
+    ctx.response = await apiServices[serviceName].getRequest({
+      params: params,
+    });
   },
 );
 
