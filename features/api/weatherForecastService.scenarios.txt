@@ -6,6 +6,20 @@ Scenario: Open-Meteo API GET resposne return expected data type
   And Response from "OpenMeteoService" should match the data type
   And Response from "OpenMeteoService" should have data for 7 next days
 
+
+Scenario: Weather forecast the same between Open-Meteo and OpenMeteoService
+  When GET "weatherForecastService" with "name=Kyiv" params
+  And GET "OpenMeteoService" with "name=Kyiv" params
+  Then 7 days weather forecast should be the same between data providers
+ 
+ 
+Scenario: GET response contains a 7-day forecast starting from today
+  When GET "weatherForecastService" with "name=Kyiv" params
+  Then Response status should be 200
+  And the response payload should contain 7 daily forecast entries
+  And the forecast date range should start from today and cover the next 7 consecutive days
+
+
 ## for those scenarios will need to mock Open-Meteo data 
 Scenario Outline: GET response - reasoning indicates right temperature category and suitability between  <activity 1> and <activity 2> when temperature is <temperature> over one week
   Given Open-Meteo returns "<temperature>" for "Kyiv"
@@ -88,12 +102,5 @@ Scenario: Search city by partial name returns relevant city proposals
   Then Response status should be 200
   And all suggested city names in the response should contain "Lon"
   And suggested city names should contain "London"
-
-
-Scenario: GET response contains a 7-day forecast starting from today
-  When GET "weatherForecastService" with "name=Kyiv" params
-  Then Response status should be 200
-  And the response payload should contain 7 daily forecast entries
-  And the forecast date range should start from today and cover the next 7 consecutive days
 
 
